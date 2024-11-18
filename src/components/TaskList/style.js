@@ -5,4 +5,5 @@ export const StyledTaskList = styled.div`
   flex-direction: column;
   gap: 15px;
   margin-top: 20px;
+  padding: '10px';
 `;

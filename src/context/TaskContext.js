@@ -54,6 +54,7 @@ const TaskProvider = ({ children }) => {
     <TaskContext.Provider
       value={{
         tasks: filteredTasks,
+        setTasks,
         addTask,
         deleteTask,
         editTask,

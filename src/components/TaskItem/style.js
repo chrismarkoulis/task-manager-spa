@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
 export const StyledTaskItem = styled.div`
-  background-color: ${({ theme }) => theme.taskBg};
-  color: ${({ theme }) => theme.text};
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: border-color 0.3s, background-color 0.3s;
-  
+  margin: 8px 0;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.taskBg};
+  border: 1px solid ${({ theme }) => theme.borderColor};
+
   &:hover {
     border-color: ${({ theme }) => theme.borderHoverColor};
   }
