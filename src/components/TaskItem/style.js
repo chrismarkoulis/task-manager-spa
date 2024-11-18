@@ -1,28 +1,62 @@
 import styled from 'styled-components';
 
 export const StyledTaskItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.taskBg};
+  color: ${({ theme }) => theme.text};
+  border: 1px solid ${({ theme }) => theme.borderColor};
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.text};
-  span {
-    flex-grow: 1;
-    text-decoration: ${({ completed }) => (completed ? 'line-through' : 'none')};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.3s, background-color 0.3s;
+  
+  &:hover {
+    border-color: ${({ theme }) => theme.borderHoverColor};
+  }
+`;
+
+export const StyledCheckbox = styled.input`
+  margin-right: 15px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+`;
+
+export const StyledTitle = styled.span`
+  text-decoration: ${({ completed }) => (completed ? 'line-through' : 'none')};
+  color: ${({ theme, completed }) => (completed ? theme.textMuted : theme.text)};
+  flex-grow: 1;
+  margin-right: 10px;
+  transition: color 0.3s;
+`;
+
+export const StyledInput = styled.input`
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid ${({ theme }) => theme.inputBorder};
+  border-radius: 3px;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.taskBg};
+  outline: none;
+  margin-right: 10px;
+  
+  &:focus {
+    border-color: ${({ theme }) => theme.primaryColor};
   }
 `;
 
 export const StyledButton = styled.button`
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: ${({ theme }) => theme.buttonBackground};
-  color: #fff;
+  background: none;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  color: ${({ theme }) => theme.primaryColor};
+  font-size: ${({ theme }) => theme.iconSize};
+  margin-left: 8px;
+  transition: color 0.3s;
+  
   &:hover {
-    background-color: ${({ theme }) => theme.buttonHover};
+    color: ${({ theme }) => theme.secondaryColor};
   }
 `;

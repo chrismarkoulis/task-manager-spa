@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
 export const StyledInput = styled.input`
   padding: 8px;
   flex: 1;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.border};
   border-radius: 4px;
 `;
 

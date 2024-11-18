@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledAppContainer = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   margin: 50px auto;
   padding: 20px;
   background-color: ${({ theme }) => theme.body};
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 export const StyledTitle = styled.h1`
