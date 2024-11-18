@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const TaskContext = createContext();
@@ -8,18 +8,16 @@ const TaskProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    setFilteredTasks();
-  }, [tasks, searchTerm, filter]);
-
   const addTask = (task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 
   const editTask = (id, newTitle) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === id ? { ...task, title: newTitle } : task))
-    );
+    if (newTitle) {
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === id ? { ...task, title: newTitle } : task))
+      );
+    }
   };
 
   const deleteTask = (id) => {
@@ -40,30 +38,32 @@ const TaskProvider = ({ children }) => {
     setFilter(e.target.value);
   };
 
-  const setFilteredTasks = () => {
-    let filtered = tasks.filter((task) => task.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    
+  const filteredTasks = useMemo(() => {
+    let filtered = tasks.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     if (filter === 'completed') {
       filtered = filtered.filter((task) => task.completed);
     } else if (filter === 'pending') {
       filtered = filtered.filter((task) => !task.completed);
     }
-
     return filtered;
-  };
-
-  const filteredTasks = setFilteredTasks();
+  }, [tasks, searchTerm, filter]);
 
   return (
-    <TaskContext.Provider value={{
-      tasks: filteredTasks,
-      addTask,
-      deleteTask,
-      editTask,
-      toggleComplete,
-      handleSearch,
-      handleFilter
-    }}>
+    <TaskContext.Provider
+      value={{
+        tasks: filteredTasks,
+        addTask,
+        deleteTask,
+        editTask,
+        toggleComplete,
+        handleSearch,
+        handleFilter,
+        searchTerm,
+        filter,
+      }}
+    >
       {children}
     </TaskContext.Provider>
   );
