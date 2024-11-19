@@ -4,7 +4,6 @@ export const StyledDropdown = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  overflow: hidden;
   width: 415px;
   background-color: ${({ theme }) => theme.background};
   border: 1px solid ${({ theme }) => theme.border};
@@ -12,13 +11,13 @@ export const StyledDropdown = styled.div`
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.1);
   z-index: 100;
   margin-left: 43px;
+  max-height: 300px;
 `;
 
 export const StyledList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 `;
 
 export const StyledItem = styled.li`

@@ -14,7 +14,7 @@ const Suggestions = ({ suggestions, error, loading, onSelect }) => {
   if (error) {
     return (
       <StyledDropdown>
-        <p style={{ color: "red", padding: "10px" }}>{error}</p>;
+        <p style={{ color: "red", padding: "10px" }}>{error}</p>
       </StyledDropdown>
     );
   }

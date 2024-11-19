@@ -1,41 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useFetch } from "./useFetch";
-import axios from "axios";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com/todos";
 
 export const useSuggestions = () => {
   const [query, setQuery] = useState("");
-  const [previousQuery, setPreviousQuery] = useState("");
   const { data: suggestions, loading, error, fetchData } = useFetch();
-  const [cancelTokenSource, setCancelTokenSource] = useState(null);
 
   const getSuggestions = (input) => {
-    setQuery(input);
+    setQuery(input); 
   };
 
   useEffect(() => {
-    if (query !== previousQuery) {
-      if (cancelTokenSource) {
-        cancelTokenSource.cancel("Operation canceled due to new request.");
-      }
+    if (query) {
 
-      const source = axios.CancelToken.source();
-      setCancelTokenSource(source);
-
-      fetchData(BASE_URL, { q: query }, source.token);
-      setPreviousQuery(query);
+      fetchData(BASE_URL, { q: query });
+      setQuery(query);
     }
-  }, [query, cancelTokenSource, fetchData, previousQuery]);
+  }, [query, fetchData]);
 
-  const getRandomTasks = () => {
+  const getRandomTasks = useMemo(() => {
     if (!suggestions) return [];
-    const shuffled = suggestions.sort(() => Math.random() - 0.5);
+    const shuffled = [...suggestions].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, 5);
-  };
+  },[suggestions]);
 
   return {
-    suggestions: getRandomTasks(),
+    suggestions: getRandomTasks,
     loading,
     error,
     getSuggestions,

@@ -1,21 +1,33 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../../context/TaskContext";
-import { useSuggestions, useDebounce } from "../../hooks";
+import { useSuggestions } from "../../hooks";
 import { StyledForm, StyledButton, StyledInput, GroupInline } from "./style";
 import SuggestionsDropdown from "../Suggestions";
+import Spinner from "../Spinner";
 
 const TaskForm = () => {
   const { addTask } = useContext(TaskContext);
   const [taskTitle, setTaskTitle] = useState("");
-  const debouncedTitle = useDebounce(taskTitle, 300);
 
   const { suggestions, loading, error, getSuggestions } = useSuggestions();
 
   useEffect(() => {
-    if (debouncedTitle) {
-      getSuggestions(debouncedTitle);
+    if (taskTitle) {
+      getSuggestions(taskTitle);
     }
-  }, [debouncedTitle, getSuggestions]);
+  }, [taskTitle, getSuggestions]);
+
+  useEffect(() => {
+    if (taskTitle && suggestions.length > 0) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [taskTitle, suggestions]);
 
   const handleSuggestionSelect = (suggestionTitle) => {
     addTask({
@@ -46,8 +58,8 @@ const TaskForm = () => {
 
         <StyledButton type="submit">Add Task</StyledButton>
       </GroupInline>
-
-      {taskTitle && (
+      {loading && <Spinner />}
+      {taskTitle && !loading && (
         <SuggestionsDropdown
           suggestions={suggestions}
           loading={loading}
