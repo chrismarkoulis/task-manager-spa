@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# React SPA Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. How to set up and run the project locally
 
-## Available Scripts
+To run the project locally, follow these steps:
 
-In the project directory, you can run:
+1. **Clone the repository:**
+```bash
+git clone https://github.com/chrismarkoulis/task-manager-spa.git
+```
 
-### `npm start`
+2. **Navigate to the project directory:**
+```bash
+cd task-manager-spa
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Install dependencies:** 
+Ensure that you have Node.js and npm installed. Then, run the following command to install all necessary dependencies:
+```bash
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. **Start the development server:**
+```bash
+npm start
+```
 
-### `npm test`
+5. **Run tests:**
+```bash
+npm test
+```
+## 2. Libraries and tools used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React: Used as the main library for building the user interface due to its component-based architecture, efficient rendering, and wide community support.
 
-### `npm run build`
+- Styled Components: Used for styling React components in a modular and reusable way.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Jest: Chosen for testing due to its simplicity, ease of integration with React, and powerful mock functionality.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React Testing Library: Chosen for testing React components in a way that mimics how users would interact with them, promoting better testing practices.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React-Beautiful-DND: Used for drag-and-drop functionality, as it simplifies complex UI interactions and provides accessibility support.
 
-### `npm run eject`
+- Axios: Used for making API requests due to its simplicity and promise-based interface for handling asynchronous code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 3. Architectural decisions and optimizations
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Component-based architecture: React's component-driven approach was utilized to create reusable, modular components. This helps in maintaining a clean and manageable codebase.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Custom hooks: Hooks like useFetch, useLocalStorage, and useDragAndDrop were created for encapsulating logic that can be reused across multiple components, improving code readability and maintainability.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- State management via Context API: The React Context API was chosen for global state management, providing a simple and efficient way to pass data and actions through the component tree without prop drilling.
 
-## Learn More
+- Drag-and-Drop functionality: React-Beautiful-DND was chosen for drag-and-drop functionality due to its ease of use and built-in accessibility features, allowing for a smoother user experience.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Error boundaries and loading states: Proper error handling and loading states were implemented in components and hooks to ensure a better user experience and more robust application behavior.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 4. Limitations and future improvements
 
-### Code Splitting
+- Limited accessibility features: While basic accessibility features were implemented, additional work could be done to make the app more accessible, such as implementing proper ARIA roles and testing.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Error handling: Although basic error handling is in place for API requests and local storage, more granular error messages and feedback could be added to improve the user experience.
 
-### Analyzing the Bundle Size
+- Optimizing performance: Performance optimizations could be made, especially with large datasets, by introducing lazy loading, pagination, or memoization in specific components or hooks.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Testing coverage: While tests were written for core components and hooks, further test coverage for edge cases and interactions would make the application more robust.
 
-### Making a Progressive Web App
+- UI improvements: Future work could include enhancing the user interface, improving the mobile responsiveness, and adding more visual cues or animations to make the app more engaging.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
