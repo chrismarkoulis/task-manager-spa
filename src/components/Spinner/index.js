@@ -5,7 +5,7 @@ import { StyledSpinner } from './style';
 const Spinner = () => {
   return (
     <StyledSpinner>
-      <AiOutlineLoading3Quarters />
+      <AiOutlineLoading3Quarters data-testid="spinner-icon"/>
     </StyledSpinner>
   );
 };
