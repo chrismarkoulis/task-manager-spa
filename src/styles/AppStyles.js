@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledAppContainer = styled.div`
   max-width: 900px;
@@ -7,6 +7,13 @@ export const StyledAppContainer = styled.div`
   background-color: ${({ theme }) => theme.body};
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+`;
+
+export const StyledGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const StyledTitle = styled.h1`
